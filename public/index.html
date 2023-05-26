@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
         .wrapper {
             padding: 10px;
             margin: 15px 0;
@@ -14,6 +16,14 @@
  
         textarea {
             width: 100%;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .tx-manrope {
+            font-family: 'Manrope', sans-serif;
         }
     </style>
 </head>
@@ -27,7 +37,7 @@
     </form>
     <small>Jumlah kata: <span id="wordCounter">0</span></small>
     <small>Jumlah karakter: <span id="charCounter">0</span></small>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
         const teksEl = document.querySelector("#teks")
         const idEl = document.querySelector("#id")
