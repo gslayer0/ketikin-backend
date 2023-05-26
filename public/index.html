@@ -19,16 +19,18 @@
 </head>
 <body>
     <h1>Try Ketikin!</h1>
-    <form action="">
+    <form action="/{{.Id}}" method="POST">
         <div class="wrapper">
-            <textarea name="" id="" cols="30" rows="10">{{.Writing}}</textarea>
+            <textarea name="teks" id="teks" cols="30" rows="10">{{.Writing}}</textarea>
         </div>
+        <input type="hidden" name="id" value="{{.Id}}">
+
+        <button type="submit">submit</button>
     </form>
 
-
-
     <script>
-
+        const teksEl = document.querySelector("#teks")
+        console.log(teksEl)
     </script>
 </body>
 </html>
