@@ -2,8 +2,10 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -72,11 +74,20 @@ func main() {
 			if err != nil {
 				panic(err.Error())
 			}
-			data := PageData{
-				Writing: writing,
-				Id:      id,
+			// data := PageData{
+			// 	Writing: writing,
+			// 	Id:      id,
+			// }
+			// tmpl.Execute(w, data)
+			w.WriteHeader(http.StatusOK)
+			w.Header().Set("Content-Type", "application/json")
+			resp := make(map[string]string)
+			resp["message"] = "OK"
+			js, err := json.Marshal(resp)
+			if err != nil {
+				log.Fatal(err.Error())
 			}
-			tmpl.Execute(w, data)
+			w.Write(js)
 		}
 	})
 	err = http.ListenAndServe(":8080", r)

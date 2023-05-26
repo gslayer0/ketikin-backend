@@ -23,14 +23,59 @@
         <div class="wrapper">
             <textarea name="teks" id="teks" cols="30" rows="10">{{.Writing}}</textarea>
         </div>
-        <input type="hidden" name="id" value="{{.Id}}">
-
-        <button type="submit">submit</button>
+        <input type="hidden" name="id" id="id" value="{{.Id}}">
     </form>
+    <small>Jumlah kata: <span id="wordCounter">0</span></small>
+    <small>Jumlah karakter: <span id="charCounter">0</span></small>
 
     <script>
         const teksEl = document.querySelector("#teks")
-        console.log(teksEl)
+        const idEl = document.querySelector("#id")
+
+        const wcEl = document.querySelector('#wordCounter')
+        let coba2 = teksEl.value.replace(/\s+/g, ' ').trim()
+        wcEl.innerHTML = coba2.split(" ").length
+
+        const ccEl = document.querySelector("#charCounter")
+        ccEl.innerHTML = teksEl.value.length
+
+
+        let saveTimeout = null;
+        async function save() {
+            if(teksEl.value.length < 1) {
+                return
+            }
+            let writing = teksEl.value;
+            let id = idEl.value;
+            let formData = new FormData();
+            formData.append("id", id)
+            formData.append("teks", writing)
+            let baseUrl = "/" + id
+            response = await fetch(baseUrl, 
+            {
+                body: formData,
+                method: "POST"
+            });
+            response = await response.json();
+            console.log(response)
+
+
+        }
+        
+        teksEl.addEventListener("keyup", () => {
+            let coba = teksEl.value.replace(/\s+/g, ' ').trim()
+            let banyakKata = coba.split(" ");
+            if(banyakKata[0] == "") banyakKata = [];
+            wcEl.innerHTML = banyakKata.length;
+            ccEl.innerHTML = teksEl.value.length
+            window.clearTimeout(saveTimeout)
+            saveTimeout = setTimeout(save, 500)
+        });
+
+
+
+
+
     </script>
 </body>
 </html>
